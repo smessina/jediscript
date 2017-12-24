@@ -1,0 +1,11 @@
+<script>
+	window.onload = function(){
+		var script = document.createElement('script');
+		script.src = 'http://www.flickr.com/services/feeds/photos_public.gne?format=json'
+		document.body.appendChild(script);
+	}
+	
+	function jsonFlickrFeed(a){
+		console.log(a);
+	}
+</script>

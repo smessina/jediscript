@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="miCatalogo">
+	<head>
+		<meta charset="utf-8">
+		<title>Angular</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script type="text/javascript">
+			
+			var miCatalogo = angular.module("miCatalogo",[]);
+			
+			miCatalogo.service("servicioAJAX",function($http){
+
+				this.obtenerPeliculas = function() {
+					
+					return $http.get("http://silviomessina.pw/geekflix/peliculas.json");
+
+				}
+			});
+			
+			miCatalogo.controller("controladorPeliculas", ['$scope','servicioAJAX', function($scope, servicioAJAX) {
+			
+				servicioAJAX.obtenerPeliculas().then(function(rta){
+
+					$scope.listadoPeliculas = rta.data;
+
+				});
+
+			}]);
+		</script>
+	</head>
+	<body ng-controller="controladorPeliculas">
+		<table>
+			<tr ng-repeat="pelicula in listadoPeliculas">
+				<td>{{pelicula.idPelicula}}</td>
+				<td>{{pelicula.Titulo | uppercase }}</td>
+				<td>{{pelicula.Estreno}}</td>
+			</tr>
+		</table>
+	</body>
+</html>

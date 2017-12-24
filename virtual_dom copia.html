@@ -1,0 +1,48 @@
+<div id="virtual">
+	<h1>DOM Virtual???</h1>	
+</div>
+<script>
+	/*
+	function vDom(n,m) {
+		this.Nombre = n;
+		this.Mensaje = m;
+		this.Mostrar = function(dom){
+
+			var self = this;
+
+			var item = document.createElement("p");
+			
+			item.innerHTML = self.Nombre;
+			
+			item.onclick = function(){
+				alert("El Mensaje es: " + self.Mensaje);
+			}
+			
+			document.querySelector(dom).appendChild( item );
+		}
+	}
+
+	var parrafo = new vDom("Este el un parrafo virtual", "Hola Viteh!");
+	*/
+
+	function vDOM(){
+		let _nombre = "Lolu"; //<-- Atributo
+		
+		
+		Object.defineProperty(this, 'Nombre', { //<-- Propiedad
+			get : function() {
+				return _nombre  + "@";
+			},
+			set : function(n) {
+				_nombre = n;
+			}
+		})
+		
+		Object.defineProperty(this, 'Mostrar', {
+			value : function(){
+				alert("Dice: " + this.Nombre);
+			}
+		})
+	}
+
+</script>
